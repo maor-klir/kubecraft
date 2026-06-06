@@ -59,18 +59,61 @@ docker network inspect bridge
 ```bash
 # Create namespaces, a bridge, and veth pairs
 # Wire them together and test connectivity
-ip netns add red
-ip netns add blue
-ip link add br-study type bridge
-# ... (full commands in script.md)
+
+# Create the network namespaces
+sudo ip netns add red
+sudo ip netns add blue
+
+# Create a bridge, bring it up, and assign an IP address with a CIDR to it
+sudo ip link add br-study type bridge
+sudo ip link set br-study up
+sudo ip addr add 10.0.0.254/24 dev br-study
+
+# Create the veth pairs, attach them accordingly, and bring them up
+sudo ip link add veth-r type veth peer name veth-r-br
+sudo ip link set veth-r netns red
+sudo ip link set veth-r-br master br-study
+sudo ip link set veth-r-br up
+
+sudo ip link add veth-b type veth peer name veth-b-br
+sudo ip link set veth-b netns blue
+sudo ip link set veth-b-br master br-study
+sudo ip link set veth-b-br up
+
+# Configure IP addresses inside the network namespaces and bring all interfaces up
+sudo ip netns exec red ip addr add 10.0.0.1/24 dev veth-r
+sudo ip netns exec blue ip addr add 10.0.0.2/24 dev veth-b
+
+sudo ip netns exec red ip link set veth-r up
+sudo ip netns exec red ip link set lo up
+sudo ip netns exec blue ip link set veth-b up
+sudo ip netns exec blue ip link set lo up
+
+# Adding default routes to the netwotk namespaces
+sudo ip netns exec red ip route add default via 10.0.0.254
+sudo ip netns exec blue ip route add default via 10.0.0.254
+```
+
+Trying to ping Google from within one of the network namespaces will not work:
+
+```bash
+sudo ip netns exec red ping -c 3 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2065ms
 ```
 
 ### 5. NAT/Masquerade -- Internet Access (2 min)
 
 ```bash
-# Enable forwarding and add masquerade rule
-sysctl -w net.ipv4.ip_forward=1
-iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o <host-iface> -j MASQUERADE
+# Allow forwarding traffic to/from the br-study bridge (required since default FORWARD policy is DROP)
+sudo iptables -A FORWARD -i br-study -j ACCEPT
+sudo iptables -A FORWARD -o br-study -j ACCEPT
+
+# Enable IP forwarding and masquerade br-study traffic to the internet
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o <host-iface> -j MASQUERADE
 ```
 
 ### 6. Brief Note -- Docker Compose Creates Its Own Bridges (1 min)
