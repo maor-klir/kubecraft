@@ -372,12 +372,12 @@ docker compose down
 
 ## Completion Checklist
 
-- [ ] Exercise 1: Inspected Docker's bridge, veth pairs, and container networking
-- [ ] Exercise 2: Built a namespace network from scratch with ping working
-- [ ] Exercise 3: Enabled NAT and reached the internet from a namespace
-- [ ] Exercise 4: Diagnosed and fixed a downed bridge
-- [ ] Exercise 5: Diagnosed and fixed missing masquerade rule
-- [ ] Bonus: Explored Docker Compose's bridge network
+- [x] Exercise 1: Inspected Docker's bridge, veth pairs, and container networking
+- [x] Exercise 2: Built a namespace network from scratch with ping working
+- [x] Exercise 3: Enabled NAT and reached the internet from a namespace
+- [x] Exercise 4: Diagnosed and fixed a downed bridge
+- [x] Exercise 5: Diagnosed and fixed missing masquerade rule
+- [x] Bonus: Explored Docker Compose's bridge network
 
 ## Next Steps
 
