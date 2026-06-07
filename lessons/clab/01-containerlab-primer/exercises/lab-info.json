@@ -1,0 +1,46 @@
+{
+  "three-nodes": [
+    {
+      "lab_name": "three-nodes",
+      "labPath": "exercises/three-node.clab.yml",
+      "absLabPath": "/home/maor/repositories/github/maor-klir/kubecraft/lessons/clab/01-containerlab-primer/exercises/three-node.clab.yml",
+      "name": "clab-three-nodes-srl1",
+      "container_id": "de4a7d84b574",
+      "image": "ghcr.io/nokia/srlinux:24.10.1",
+      "kind": "srl",
+      "state": "running",
+      "status": "Up 14 minutes",
+      "ipv4_address": "172.20.20.2/24",
+      "ipv6_address": "3fff:172:20:20::2/64",
+      "owner": "maor"
+    },
+    {
+      "lab_name": "three-nodes",
+      "labPath": "exercises/three-node.clab.yml",
+      "absLabPath": "/home/maor/repositories/github/maor-klir/kubecraft/lessons/clab/01-containerlab-primer/exercises/three-node.clab.yml",
+      "name": "clab-three-nodes-srl2",
+      "container_id": "2f90ee6718cf",
+      "image": "ghcr.io/nokia/srlinux:24.10.1",
+      "kind": "srl",
+      "state": "running",
+      "status": "Up 14 minutes",
+      "ipv4_address": "172.20.20.4/24",
+      "ipv6_address": "3fff:172:20:20::4/64",
+      "owner": "maor"
+    },
+    {
+      "lab_name": "three-nodes",
+      "labPath": "exercises/three-node.clab.yml",
+      "absLabPath": "/home/maor/repositories/github/maor-klir/kubecraft/lessons/clab/01-containerlab-primer/exercises/three-node.clab.yml",
+      "name": "clab-three-nodes-srl3",
+      "container_id": "53e918c85089",
+      "image": "ghcr.io/nokia/srlinux:24.10.1",
+      "kind": "srl",
+      "state": "running",
+      "status": "Up 14 minutes",
+      "ipv4_address": "172.20.20.3/24",
+      "ipv6_address": "3fff:172:20:20::3/64",
+      "owner": "maor"
+    }
+  ]
+}
