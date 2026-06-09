@@ -270,12 +270,12 @@ pytest tests/ -v
 
 ## Completion Checklist
 
-- [ ] Exercise 1: Deployed lab, applied config, verified adjacent pings work
-- [ ] Exercise 2: Traced Jinja2 template for srl2, wrote generated commands
-- [ ] Exercise 3: Added loopback interface via Ansible
-- [ ] Exercise 4: Diagnosed and fixed admin-disabled interface
-- [ ] Exercise 5: Diagnosed and fixed subnet mismatch
-- [ ] Exercise 6: Diagnosed and fixed missing default route
+- [x] Exercise 1: Deployed lab, applied config, verified adjacent pings work
+- [x] Exercise 2: Traced Jinja2 template for srl2, wrote generated commands
+- [x] Exercise 3: Added loopback interface via Ansible
+- [x] Exercise 4: Diagnosed and fixed admin-disabled interface
+- [x] Exercise 5: Diagnosed and fixed subnet mismatch
+- [x] Exercise 6: Diagnosed and fixed missing default route
 
 ## Next Steps
 
